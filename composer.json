@@ -1,6 +1,6 @@
 {
     "name": "itpathsolutions/role-wise-session-manager",
-    "description": "Role wise Managed session lifetime",
+    "description": "Role wise Managed session",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -31,5 +31,7 @@
             "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\" --tag=config"
         ]
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "version": "1.0.1"
 }
