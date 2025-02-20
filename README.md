@@ -14,8 +14,11 @@ composer require itpathsolutions/role-wise-session-manager
 After installation, publish the provider using the following command:
 
 ```sh
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan vendor:publish --provider="Itpathsolutions\Sessionmanager\SessionManagerServiceProvider"
 ```
+
+## Prerequisites
+Make sure you have the [Spatie Laravel Permission](https://github.com/spatie/laravel-permission) package installed before using this package.
 
 ## Middleware Configuration
 You need to add the middleware inside `app/Http/Kernel.php` in the middleware groups:
