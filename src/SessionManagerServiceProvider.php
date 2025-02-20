@@ -4,6 +4,7 @@ namespace Itpathsolutions\Sessionmanager;
 
 use Illuminate\Support\ServiceProvider;
 use Itpathsolutions\Sessionmanager\Http\Middleware\RoleBasedSessionMiddleware;
+use Itpathsolutions\Sessionmanager\Http\Middleware\CheckAdminRole;
 use Illuminate\Routing\Router;
 
 class SessionManagerServiceProvider extends ServiceProvider
@@ -18,10 +19,6 @@ class SessionManagerServiceProvider extends ServiceProvider
         ], 'migrations');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->app['router']->aliasMiddleware('session.timeout', RoleBasedSessionMiddleware::class);
-
-        $router = $this->app->make(Router::class);
-        $router->aliasMiddleware('role.session', RoleBasedSessionMiddleware::class);
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Itpathsolutions\Sessionmanager\Http\Commands\RemoveMigrationCommand::class,
