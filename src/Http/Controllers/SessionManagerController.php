@@ -3,6 +3,7 @@
 namespace Itpathsolutions\Sessionmanager\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
@@ -16,9 +17,16 @@ class SessionManagerController extends Controller
 
     public function index()
     {
+        Session::start();
         $user = Auth::user();
-        if (!$user) {
-            return response()->json(['error' => 'User not authenticated.'], 401);
+        $roles = $user->getRoleNames();
+
+        $hasAdminRole = collect($roles)->contains(function ($role) {
+            return stripos($role, 'admin') !== false; // Case-insensitive search
+        });
+
+        if (!$hasAdminRole) {
+            return redirect()->route('login')->with('error', 'You must be an admin to access this page.');
         }
 
         $roles = Role::all();

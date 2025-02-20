@@ -10,13 +10,15 @@
     },
     "authors": [
         {
-            "name": "Archana Soni"
+            "name": "Archana Soni",
+            "email": "archanau@itpathsolutions.com"
         }
     ],
     "require": {
         "php": ">=7.0",
         "illuminate/support": ">=5.0 <12.0",
-        "spatie/laravel-permission": ">=3.0 <7.0"
+        "spatie/laravel-permission": ">=3.0 <7.0",
+        "laravel/ui": ">=2.0 <5.0"
     },
     "extra": {
         "laravel": {
@@ -29,6 +31,8 @@
         "post-install-cmd": [
             "@php -r \"if (class_exists('Spatie\\\\Permission\\\\PermissionServiceProvider')) { echo 'Spatie already installed. Skipping vendor publish.'; } else { system('php artisan vendor:publish --provider=\\\"Spatie\\\\Permission\\\\PermissionServiceProvider\\\" --tag=config'); system('php artisan vendor:publish --provider=\\\"Spatie\\\\LaravelPermission\\\\PermissionServiceProvider\\\" --tag=migrations'); }\"",
             "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\" --tag=config",
+            "@php artisan migrate",
+            "@php artisan ui:auth",
             "@php artisan migrate"
         ],
         "pre-uninstall-cmd": [
@@ -37,5 +41,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "version": "1.0.3"
+    "version": "1.0.4"
 }
