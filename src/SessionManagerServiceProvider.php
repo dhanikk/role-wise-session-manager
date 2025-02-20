@@ -13,9 +13,6 @@ class SessionManagerServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'sessionmanager');
         $this->loadMigrationsFrom(database_path('migrations'));
-        // $this->publishes([
-        //     __DIR__.'/Config/sessionmanager.php' => config_path('sessionmanager.php'),
-        // ], 'config');
         $this->publishes([
             __DIR__.'/database/migrations/' => database_path('migrations'),
         ], 'migrations');
@@ -25,10 +22,11 @@ class SessionManagerServiceProvider extends ServiceProvider
 
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('role.session', RoleBasedSessionMiddleware::class);
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Itpathsolutions\Sessionmanager\Http\Commands\RemoveMigrationCommand::class,
+            ]);
+        }
     }
 
-    // public function register()
-    // {
-    //     $this->mergeConfigFrom(__DIR__.'/Config/sessionmanager.php', 'sessionmanager');
-    // }
 }

@@ -28,7 +28,11 @@
     "scripts": {
         "post-install-cmd": [
             "@php -r \"if (class_exists('Spatie\\\\Permission\\\\PermissionServiceProvider')) { echo 'Spatie already installed. Skipping vendor publish.'; } else { system('php artisan vendor:publish --provider=\\\"Spatie\\\\Permission\\\\PermissionServiceProvider\\\" --tag=config'); system('php artisan vendor:publish --provider=\\\"Spatie\\\\LaravelPermission\\\\PermissionServiceProvider\\\" --tag=migrations'); }\"",
-            "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\" --tag=config"
+            "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\" --tag=config",
+            "@php artisan migrate"
+        ],
+        "pre-uninstall-cmd": [
+            "@php artisan package:remove-migration"
         ]
     },
     "minimum-stability": "dev",
