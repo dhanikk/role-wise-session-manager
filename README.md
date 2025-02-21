@@ -10,6 +10,9 @@ You can install the package using Composer:
 composer require itpathsolutions/role-wise-session-manager
 ```
 
+## Prerequisites
+You need spatie roles and also any admin role can access to change the role session lifetime
+
 ## Publishing the Provider
 After installation, publish the provider using the following command:
 
@@ -23,14 +26,21 @@ You need to add the middleware inside `app/Http/Kernel.php` in the middleware gr
 ```php
 protected $middlewareGroups = [
     'web' => [
+        'role.session',
         // Your other middleware
-        \Itpathsolutions\Sessionmanager\Http\Middleware\RoleBasedSessionMiddleware::class,
     ],
 
     'api' => [
         //
     ],
 ];
+```
+
+Also you need to add the middleware inside your routes file
+```php
+    Route::middleware(['auth','role.session'])->group(function () {
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+    });
 ```
 
 ## Managing Session Lifetime
