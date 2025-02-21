@@ -29,7 +29,9 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@php -r \"if (class_exists('Spatie\\\\Permission\\\\PermissionServiceProvider')) { echo 'Spatie already installed. Skipping vendor publish.'; } else { system('php artisan vendor:publish --provider=\\\"Spatie\\\\Permission\\\\PermissionServiceProvider\\\" --tag=config'); system('php artisan vendor:publish --provider=\\\"Spatie\\\\LaravelPermission\\\\PermissionServiceProvider\\\" --tag=migrations'); }\"",
+            "@php -r \"if (class_exists('Illuminate\\\\Support\\\\ServiceProvider')) { echo 'Illuminate Support is installed.\\n'; } else { echo 'Illuminate Support is missing. Please install it first.\\n'; exit(1); }\"",
+            "@php -r \"if (class_exists('Spatie\\\\Permission\\\\PermissionServiceProvider')) { echo 'Spatie Permission is installed.\\n'; } else { echo 'Spatie Permission is missing. Installing now...\\n'; system('composer require spatie/laravel-permission'); }\"",
+            "@php -r \"if (class_exists('Laravel\\\\Ui\\\\UiServiceProvider')) { echo 'Laravel UI is installed.\\n'; } else { echo 'Laravel UI is missing. Installing now...\\n'; system('composer require laravel/ui'); }\"",
             "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\" --tag=config",
             "@php artisan migrate",
             "@php artisan ui:auth",
