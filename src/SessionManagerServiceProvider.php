@@ -3,8 +3,6 @@
 namespace Itpathsolutions\Sessionmanager;
 
 use Illuminate\Support\ServiceProvider;
-use Itpathsolutions\Sessionmanager\Http\Middleware\RoleBasedSessionMiddleware;
-use Illuminate\Routing\Router;
 
 class SessionManagerServiceProvider extends ServiceProvider
 {
@@ -17,8 +15,6 @@ class SessionManagerServiceProvider extends ServiceProvider
             __DIR__.'/database/migrations/' => database_path('migrations'),
         ], 'migrations');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $router = $this->app->make(Router::class);
-        $router->aliasMiddleware('role.session', RoleBasedSessionMiddleware::class);
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Itpathsolutions\Sessionmanager\Http\Commands\RemoveMigrationCommand::class,
