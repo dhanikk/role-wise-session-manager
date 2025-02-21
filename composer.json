@@ -29,16 +29,24 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider",
-            "@php artisan migrate"
+            "@php artisan vendor:publish --provider=\"Spatie\\LaravelPermission\\PermissionServiceProvider\" --tag=config",
+            "@php artisan vendor:publish --provider=\"Spatie\\LaravelPermission\\PermissionServiceProvider\" --tag=migrations",
+            "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\"",
+            "@php artisan migrate",
+            "@php artisan ui:auth"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider",
-            "@php artisan migrate"
+            "@php artisan vendor:publish --provider=\"Spatie\\LaravelPermission\\PermissionServiceProvider\" --tag=config",
+            "@php artisan vendor:publish --provider=\"Spatie\\LaravelPermission\\PermissionServiceProvider\" --tag=migrations",
+            "@php artisan vendor:publish --provider=\"Itpathsolutions\\Sessionmanager\\SessionManagerServiceProvider\"",
+            "@php artisan migrate",
+            "@php artisan ui:auth"
         ],
         "pre-uninstall-cmd": [
             "@php artisan package:remove-migration"
         ]
     },
-    "version": "1.0.11"
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "version": "1.0.12"
 }
