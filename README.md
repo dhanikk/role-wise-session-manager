@@ -42,6 +42,8 @@ http://127.0.0.1:8000/session-manager-info
 
 The default session lifetime is set to **30 minutes per role**, but you can modify it as needed, and changes will take effect in your system.
 
+## It will work when you have role like "%Admin%"
+
 ---
 
 Enjoy managing session lifetimes efficiently with Role Wise Session Manager!

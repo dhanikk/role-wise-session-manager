@@ -42,11 +42,11 @@
             "@php artisan migrate",
             "@php artisan ui:auth"
         ],
-        "pre-uninstall-cmd": [
-            "@php artisan package:remove-migration"
+        "pre-package-uninstall": [
+            "@php artisan package:remove-migration || true"
         ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "version": "1.0.12"
+    "version": "1.0.13"
 }
